@@ -3,7 +3,7 @@ layout: post
 title:  "BDD - Behave yourself"
 date:   2019-03-03 18:20:20 +0000
 ---
-## Stage one - denial
+## Intro - Why waste time writing tests?
 
 When i started working for my current company, i struggled with with concept of behaviour driven development. I came from a background of fix the problem, test the fix throughly by hand and then release, what some would say the 'old school' approach to software development.
 
@@ -22,7 +22,7 @@ Being unable to answer these questions suitable, I created what i thought was a 
 
 Im not proud of this approach, but its important to be thruthful, this is how i used to develop professional software prior to BDD!
 
-## Stage two - the pain
+## The outcome of this approach
 
 At the time i was working on a very busy project and our development team was put under alot of pressure to deliver. When inexperienced developers are put under such pressure, they normally resort to the aforementioned approach, their comfort zone. Following this approach is easy and it allows a developer to produce results quickly.
 
@@ -36,7 +36,12 @@ When the customer discovers problem 'B', 'C' etc etc. The delivered solution wil
 
 The outcome for the company will be lose in revenue due to the time spent resolving these 'unforeseen issues' and a possible lack of trust from the customer.
 
-## Stage three - doing it right
+## I started behaving myself
+
+Recieving an email from the customer or project manager stating there's problems with your code fix soon becomes old, and the importance of code quality and testing coverage soon become paramount. In these scenarios I found myself turning to BDD and it soon transformed how i worked.
+
+BDD or Behavioural Driver Development focuses on creating tests which are focused on the end user and how they behave when they are using your application.
+
 
 
 
