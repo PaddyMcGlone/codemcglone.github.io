@@ -5,6 +5,8 @@ date:   2019-03-03 18:20:20 +0000
 ---
 ## Intro - Why waste time writing tests?
 
+Tests are your requirments, if you cant write tests then you dont understand your requirements.
+
 When i started working for my current company, i struggled with with concept of behaviour driven development. I came from a background of fix the problem, test the fix throughly by hand and then release. What some would say the 'old school' approach to software development.
 
 The idea that writing tests before you wrote your actual 'production' code sounded so foreign to me that i thought it was a waste time and a distraction from the 'real software development. When i was learning this new approach to development a number of questions ran through my head:
