@@ -14,6 +14,7 @@ Please ignore the fact that this is poor ASP.Net code as the controller is not o
 public ActionResult ProcessVan(Van model)
 {
     var okToProceed = ValidateVan(model);
+
     if(okToProceed) return RedirectToAction("NextStep");    
 }
 
