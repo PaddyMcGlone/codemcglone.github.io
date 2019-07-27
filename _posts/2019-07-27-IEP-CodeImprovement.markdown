@@ -5,13 +5,12 @@ date:   2019-07-25 17:00:00 +0000
 ---
 ## Right, what is this all about?
 
-In a nutshell, the information Expert Principal states if you are writing a new method in your application, rather than placing it within a bloated service or controller, you should place the method where the properties used within the method are defined.
+In a nutshell, the Information Expert Principal states if you are writing a new method in your application, rather than placing it within a bloated service or controller, you should place the method where the properties used within the method are defined.
 
 ## Lets look at some code
 Below is a really simple controller and a helper method known as process van.
 Please ignore the fact that this is poor ASP.Net code as the controller is not only managing and directing the request, but also performing validation.
 
-// The VehicleController Post method
 [HttpPost]
 public ActionResult ProcessVan(Van model)
 {
@@ -20,7 +19,6 @@ public ActionResult ProcessVan(Van model)
     if(okToProceed) return RedirectToAction("NextStep");    
 }
 
-// VehicleController helper method region
 public bool ProcessVan(van model)
 {
     if (model.engineSize < 140)
@@ -45,15 +43,11 @@ To help improve the code readability for the first time reader, lets move this c
 
 ## Refactor
 
-// The VehicleController
-
 [HttpPost]
 public ActionResult ProcessVan(Van model)
 {
     if(model.Validate()) return RedirectToAction("NextStep");
 }
-
-// The Van Class
 
 public class Van : Vehicle
 {
