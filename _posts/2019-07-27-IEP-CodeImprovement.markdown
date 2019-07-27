@@ -11,7 +11,6 @@ In a nutshell, the Information Expert Principal states if you are writing a new 
 Below is a really simple controller and a helper method known as process van.
 Please ignore the fact that this is poor ASP.Net code as the controller is not only managing and directing the request, but also performing validation.
 
-[HttpPost]
 public ActionResult ProcessVan(Van model)
 {
     var okToProceed = ValidateVan(model);
@@ -43,7 +42,6 @@ To help improve the code readability for the first time reader, lets move this c
 
 ## Refactor
 
-[HttpPost]
 public ActionResult ProcessVan(Van model)
 {
     if(model.Validate()) return RedirectToAction("NextStep");
