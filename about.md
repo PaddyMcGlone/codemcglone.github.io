@@ -4,15 +4,10 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+My name is Patrick 'Paddy' McGlone, I am a software engineer based in Belfast, Northern Ireland. I am currently on a journey to further myself as an engineer and using this blog to note my progress.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+The hope is that there is someone out there like me and a little confused on a topic and this blog might be able to explain something a little further.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+Thanks for reading & why not drop me a line using my contact details below if you want to chat further.
 
-
-[jekyll-organization]: https://github.com/jekyll
+Paddy
