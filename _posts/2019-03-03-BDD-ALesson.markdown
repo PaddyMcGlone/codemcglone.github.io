@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "BDD - Behave yourself now"
-date:   2019-03-03 18:20:20 +0000
+date:   2019-07-25 18:20:20 +0000
 ---
 ## Why waste time writing tests, I've work to do 
 
