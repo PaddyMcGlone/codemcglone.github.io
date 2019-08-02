@@ -47,7 +47,7 @@ However, what happens if one day the customer rings the developer and asks:
 >‘Hey developer, email alerts is so old fashioned, can I please swap it out for WhatsApp notifications?’.  
 
 Straight away the developer is thinking:
->‘oh no, I have to change and redeploy my stockroom class and I also have to create a new service and add it’.
+>‘Oh no, I have to change and redeploy my stockroom class and I also have to create a new service and add it’.
 
 This is where interfaces can come to the rescue and save the developer from all these headaches. 
 
