@@ -68,7 +68,7 @@ Now that we have defined our interface / contract, we can then define a class to
         } 
     } 
 
-What we have done in the code above is define a contract that states, when implemented a class must implement a send method which recieves a message as a param. In our example above, the Send message is implemented by the WhatsAppAlerts class.
+What we have done in the code above is define a contract that states, when implemented a class must implement a send method which receives a message as a param. In our example above, the Send message is implemented by the WhatsAppAlerts class.
 
 Now that we have a contract and a class implementing that contract, we can update our formerly tightly coupled class, to something a little less dependant: 
 
