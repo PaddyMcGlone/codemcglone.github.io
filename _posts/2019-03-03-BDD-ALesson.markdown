@@ -43,7 +43,7 @@ Questions many inexperienced developers such as myself ask themselves at the sta
 <li> Add some tests to keep the ‘reviewer’ happy. </li>
 </ol>
 
-I'm not proud of this approach, but it's important to be truthful, this is how I used to develop professional software prior to BDD! <strong>My apologies to Roger & Colin if you are reading this</strong>. 
+I'm not proud of this approach, but it's important to be truthful, this is how I used to develop professional software prior to BDD! My apologies to <strong>Roger & Colin</strong> if you are reading this. 
 
 ## The outcome of this approach 
 
