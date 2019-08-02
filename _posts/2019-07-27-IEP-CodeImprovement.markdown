@@ -80,6 +80,6 @@ This also means that if we wish to extend or modify the rules for validating a v
 
 The Information Expert principal not only allows engineers to improve the readability of their code. It also helps to improve Encapsulation or information hiding, as if we wish to extend or remove rules from the validation method. This change will only affect the van class and we will not have a number of dependant classes affected throughout the application, such as a the VehicleController in our earlier example.
 
-When I first started developing ASP.Net web applications, I failed to deploy this principal and as a result I was developing fat controllers and services which were hard to unit test and also maintain. By applying this prinicpal I have found I have been able to improve the quality of work via regards to 'clean code' and testability.
+When I first started developing ASP.Net web applications, I failed to deploy this principal and as a result I was developing fat controllers and services which were hard to unit test and also maintain. By applying this prinicpal I have found I have been able to improve the quality of work via regards to <em>'clean code'</em> and testability.
 
-So if you are writing a new method in your class, why not take a second and look at your rules and think 'Does this method belong here?'
+So if you are writing a new method in your class, why not take a second and look at your rules and think <em>'Does this method belong here?'</em>
