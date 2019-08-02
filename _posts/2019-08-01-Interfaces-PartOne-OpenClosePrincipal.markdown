@@ -7,9 +7,9 @@ date:   2019-08-01 18:00:00 +0000
 
 When I was a junior software engineer working with Borland Delphi 7 I couldn’t wrap my head around interfaces.
 
-    'Why use an interface, surely its easier to just simply call the method.'
+>'Why use an interface, surely its easier to just simply call the method.'
 
-    'What is it even used for, is it the same as inheritance.'
+>'What is it even used for, is it the same as inheritance.'
 
  These were questions I often asked myself during this time and it wasnt until I made the move to developing web apps that their purpose started to make sense.
 
@@ -98,7 +98,7 @@ Now that we have a contract and a class implementing that contract, we can updat
 
 As you can see in the class above, the StockRoom class no longer cares who is in charge of sending the message, it calls alert and sends a message, this class is no longer concerned with the medium used to transport this message.
 
-        > Please note the use of dependancy injection above for the creation of the alert logic. If you are unfamilar with this concept I will create another blog article covering this concept. For now, simply think of this as a method of improving the dependancy inversion and another entity is now incharge of creating this object.
+> Please note the use of dependancy injection above for the creation of the alert logic. If you are unfamilar with this concept I will create another blog article covering this concept. For now, simply think of this as a method of improving the dependancy inversion and another entity is now incharge of creating this object.
 
 What we have achieved in the code above is add loose coupling to our stockroom class. We have moved from the class being responsible for sending the message to calling an abtract which handles the send for us. This means in the future if the customer decides to switch back to emails or an alternative messaging approach. The developer simply has to implement a new class for sending the message and inherit from Alerts – the StockRoom will remain unchanged. 
 
