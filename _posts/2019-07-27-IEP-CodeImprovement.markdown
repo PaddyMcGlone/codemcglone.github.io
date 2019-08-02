@@ -11,26 +11,26 @@ In a nutshell, the Information Expert Principal states if you are writing a new 
 Below is a really simple controller and a helper method known as process van.
 Please ignore the fact that this is poor ASP.Net code as the controller is not only managing and directing the request, but also performing validation.
 
-public ActionResult ProcessVan(Van model)
-{
-    var okToProceed = ValidateVan(model);
+    public ActionResult ProcessVan(Van model)
+    {
+        var okToProceed = ValidateVan(model);
 
-    if(okToProceed) return RedirectToAction("NextStep");    
-}
+        if(okToProceed) return RedirectToAction("NextStep");    
+    }
 
-public bool ProcessVan(van model)
-{
-    if (model.engineSize < 140)
-        return false;
+    public bool ProcessVan(van model)
+    {
+        if (model.engineSize < 140)
+            return false;
     
-    if(model.type != "Volkswagen")
-        return false;
+        if(model.type != "Volkswagen")
+            return false;
 
-    if(model.Colour == "Grey")
+        if(model.Colour == "Grey")
+            return true;
+
         return true;
-
-    return true;
-}
+    }
 
 ## Feedback
 
@@ -42,37 +42,31 @@ To help improve the code readability for the first time reader, lets move this c
 
 ## Refactor
 
-public ActionResult ProcessVan(Van model)
-{
-    if(model.Validate()) return RedirectToAction("NextStep");
-}
-
-public class Van : Vehicle
-{
-    #region Properties
-    public string Type { get; set;}
-    public string Colour {get; set;}
-    public strubg EngineSize {get; set;}
-    #endregion
-
-    #region methods
-
-    public Validate()
+    public ActionResult ProcessVan(Van model)
     {
-        if (this.EngineSize < 140)
-            return false;
-    
-        if(this.Type != "Volkswagen")
-            return false;
-
-        if(this.Colour == "Grey")
-            return true;
-
-        return true;
+        if(model.Validate()) return RedirectToAction("NextStep");
     }
 
-    #endregion
-}
+    public class Van : Vehicle
+    {        
+        public string Type { get; set;}
+        public string Colour {get; set;}
+        public strubg EngineSize {get; set;}             
+
+        public Validate()
+        {
+            if (this.EngineSize < 140)
+                return false;
+    
+            if(this.Type != "Volkswagen")
+                return false;
+
+            if(this.Colour == "Grey")
+                return true;
+
+            return true;
+        }        
+    }
 
 Firstly, we could further improve this code by making this class inherit from IValidatable and remove the need to call the method from the controller. However, I wanted to keep things simple for this blog entry, I will touch on IValidatable in another entry.
 
