@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Interfaces Part one - Open/Closed principal"
+title:  "Interfaces [Part One] - Open/Closed principal"
 date:   2019-08-01 18:00:00 +0000
 ---
 ## Interfaces – Part one:  The open / closed principal
