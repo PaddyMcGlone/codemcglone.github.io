@@ -43,9 +43,11 @@ I like to think of an interface as an abstraction between the caller and provide
 
 If we look at the code above, we can see that the developer has defined a <em>'tightly coupled'</em> class, meaning our class is highly dependent on the class email service. If we were working on a really simple web application and we were not concerned about unit testing or the open closed principal (Software should be open for extension but closed for modification) this code would be fine. 
 
-However, what happens if one day the customer rings the developer and asks <em>‘Hey developer, email alerts is so old fashioned, can I please swap it out for WhatsApp notifications?’</em>.  
+However, what happens if one day the customer rings the developer and asks:
+>‘Hey developer, email alerts is so old fashioned, can I please swap it out for WhatsApp notifications?’.  
 
-Straight away the developer is thinking, <em>‘oh no, I have to change and redeploy my stockroom class and I also have to create a new service and add it’</em>. 
+Straight away the developer is thinking:
+>‘oh no, I have to change and redeploy my stockroom class and I also have to create a new service and add it’.
 
 This is where interfaces can come to the rescue and save the developer from all these headaches. 
 
