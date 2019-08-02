@@ -70,7 +70,7 @@ To help improve the code readability for the first time reader, lets move this c
 
 Firstly, we could further improve this code by making this class inherit from IValidatable and remove the need to call the method from the controller. However, I wanted to keep things simple for this blog entry, I will touch on IValidatable in another entry.
 
-Lets now have a look at our controller, now that we have placed the validation method within the model, we can simply give it a more meaningful name like 'validate' and the user will be aware of the methods purpose. Also note the lack of params passed into the method. This is because we are currently working with the current instance of this object and the method is already aware of the property values.
+Lets now have a look at our controller, now that we have placed the validation method within the model, we can simply give it a more meaningful name like <em>'validate'</em> and the user will be aware of the methods purpose. Also note the lack of params passed into the method. This is because we are currently working with the current instance of this object and the method is already aware of the property values.
 
 Finally, we are not only removing the validation logic from the controller and placing it within a shared place which can be easily unit tested. By employing the information expert principal, we are allowing this code to be reused within multiple places within our application. 
 
