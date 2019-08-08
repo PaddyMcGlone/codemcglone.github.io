@@ -9,7 +9,7 @@ Firstly what is this term Polymorphism and what does it mean?
 
 When you <em>'Google'</em> the term Polymorphisim OOP we receive a barrage of answers, some of which state
 
->the ability of an object to take on many forms
+>the ability for an object to take on many forms
 
 >It is the ability to process objects differently based upon their type / class.
 
@@ -37,13 +37,16 @@ Let’s try and understand this concept via a simple code example:
         }
     }
 
-In the code above we have a method which simply wants to print all of the shapes which are currently in the list.
-But what if we add a new shape type to this list? 
+In the code above we have a method which simply wants to print all of the shapes which are currently in the list.But what if we add a new shape type to this list? 
+
 This code is not <em>extensible</em> and the addition of this new shape type will force a code change in our switch statement to handle to new printing method needed.
+
 This class is also breaking the <em>information expert principal</em> that we discussed in a previous entry. 
+
 At present the DrawShape class knows how to print each shape, this is knowledge that doesn’t belong in this class. This information belongs within each shape class (will also introduce cleaner code).
 
 The outcome from our change is we want our DrawShapes method to simply iterate through the list and ask each shape to draw itself.
+
 This method doesn’t need to know how each shape does it, its role is to simply pass through the list and request it’s drawn on screen.
 
     Public void DrawShapes(List<Shape> shapes)
