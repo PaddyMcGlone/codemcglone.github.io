@@ -1,0 +1,94 @@
+---
+layout: post
+title:  "Interfaces [Part Two] - Adding Polymorphism"
+date:   2019-08-8 18:00:00 +0000
+---
+### Hang on a minute, what’s this polymorphism about?
+
+Firstly what is this term Polymorphism and what does it mean
+When you <em>'Google'</em> the term Polymorphisim OOP we receive a barrage of answers, some of which state
+
+>the ability of an object to take on many forms
+
+>It is the ability to process objects differently based upon their type / class.
+
+### Code example – DrawShapes()
+
+It really quite a simple and yet powerful object orientated programming concept. 
+Let’s try and understand this concept via a simple code example:
+
+    Public class Program 
+	{
+        Public void DrawShapes(List<Shape> shapes)
+        {
+	        Foreach(var shape in shapes)
+	        {
+                Switch(shape.type)
+                {
+	                Case “circle” :
+		                Console.Writeline(“Printing a circle”);
+		                break;
+	                Case “Square” :
+		                Console.Writeline(“Printing a square”);
+		                Break;
+                }
+            }
+        }
+    }
+
+In the code above we have a method which simply wants to print all of the shapes which are currently in the list.
+But what if we add a new shape type to this list? 
+This code is not <em>extensible</em> and the addition of this new shape type will force a code change in our switch statement to handle to new printing method needed.
+This class is also breaking the <em>information expert principal</em> that we discussed in a previous entry. 
+At present the DrawShape class knows how to print each shape, this is knowledge that doesn’t belong in this class. This information belongs within each shape class (will also introduce cleaner code).
+
+The outcome from our change is we want our DrawShapes method to simply iterate through the list and ask each shape to draw itself.
+This method doesn’t need to know how each shape does it, its role is to simply pass through the list and request it’s drawn on screen.
+
+    Public void DrawShapes(List<Shape> shapes)
+    {
+	    Foreach(var shape in shapes)
+		    shape.Draw();
+    }
+
+Ok – so how do can we make this change possible in our application? 
+Let’s start by adding a Draw method to our base class of Shape, which is being called in the method above.
+
+    Public class Shape
+    {
+	    private int Area  { get; set; }
+	    private int Sides { get; set; }
+        
+        public virtual void Draw()
+        {
+	        Console.Writeline(“ShapeClass: Drawing a generic shape.”)
+        }
+    }
+
+Note we have added the virtual keyword above, the reason for adding this keyword is so this method if necessary can be overwritten within inherited classes. 
+So now we have a base class created, let’s invoke the information expert principal and move the draw logic for drawing each specific shape from the DrawShapes method into the specific classes:
+
+    Public class Square : Shape
+    {
+        Public override void Draw()
+        {
+	        Console.Writeline(“Square class: Drawing a square shape”);
+		}	
+    }
+
+    Public class Circle : Shape
+    {
+        Public override void Draw()
+        {
+	        Console.Writeline(“Circle class: Drawing a circle shape”);
+		}	
+    }
+
+This code is polymorphism in action, we are inheriting the virtual shape draw method within each class and then overriding the base method with a draw method for our specific class. 
+We then call this for each specific shape or use the default method if suitable.
+
+### Outcome
+By introducing Polymorphism into our application we are improving encapsulation and also preventing the creation of fat methods and helper classes within our application. 
+This convention also improves code readability and testability.
+
+
