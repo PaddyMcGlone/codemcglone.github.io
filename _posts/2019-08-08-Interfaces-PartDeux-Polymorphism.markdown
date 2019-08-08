@@ -45,10 +45,13 @@ This class is also breaking the <em>information expert principal</em> that we di
 
 At present the DrawShape class knows how to print each shape, this is knowledge that doesn’t belong in this class. This information belongs within each shape class (will also introduce cleaner code).
 
-The outcome from our change is we want our DrawShapes method to simply iterate through the list and ask each shape to draw itself.
+### How can we fix this issue?
+
+Ideally we want our DrawShapes method to simply iterate through the list of shapes and ask each shape to draw itself. After all isn't that the single reponsibility of this method?
 
 This method doesn’t need to know how each shape does it, its role is to simply pass through the list and request it’s drawn on screen.
 
+    // This is Polymorphism, Draw() knows how to handle each
     Public void DrawShapes(List<Shape> shapes)
     {
 	    Foreach(var shape in shapes)
