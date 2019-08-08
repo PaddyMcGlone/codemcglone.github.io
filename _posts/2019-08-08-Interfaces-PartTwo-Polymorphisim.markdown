@@ -96,4 +96,67 @@ We then call this for each specific shape or use the default method if suitable.
 By introducing Polymorphism into our application we are improving encapsulation and also preventing the creation of fat methods and helper classes within our application. 
 This convention also improves code readability and testability.
 
+### Interfaces and Polymorphism 
+In the last entry, we resolved a problem with the customer wanting to change their messaging platform but this change was going to have an impact on the existing Stockroom class and force a code change. 
+
+This is why we introduced interfaces into our application to implement the <em>'Open/Closed'</em> principal, to make our app more extensible and reactive to change.
+
+>A modern software application is one where we can change the behaviour of a class without having to change the code. This is achieved through extensibility, rather than changing existing application code we alternatively add new classes to our application
+
+However, in the last module if the customer wanted to add a new communication method. Our solution meant they had to remove the old class and add a new class which implements the messaging contract (interface).
+
+    Public class WhatsAppMessenger : IAlert
+    {
+        Public void Send(string message)
+        {
+            Console.WriteLine($”WhatsApp notification: {message}”);
+        }
+	}
+
+What if the customer wanted to keep the email service and add a WhatsApp notification on top of their current notification stack?
+
+Now using our newly founded Polymorphism knowledge, we can implement this into our StockRoom application.
+
+    Public class StockRoom 
+    { 
+         // A list of possible message portals
+        private readonly IList<IAlert> _alerts
+    
+        Public StockRoom() 
+        { 
+	        _alerts = new List<IAlert>();
+        }  
+
+        Public void CheckStock() 
+        { 
+            // Do some stock checking calculations.. 
+            If(stockLevel <= AcceptableLevel) 
+                SendMessage(“Christina - Order more books pronto!”); 
+        } 
+
+        Public void SendMessage(string message) 
+        { 	
+            // Polymorphically sending a message via multiple forms
+	        foreach(var alert in _alerts)
+                portal.Send(message); 
+        } 
+
+        // A method used to add alert types
+        Public void AddNewMessagePortal(IAlert alert)
+        {
+            _messagePortal.Add(alert);
+        }
+    }
+
+We have introduced polymorphism into our StockRoom application via interfaces. All of the messaging types (WhatsApp, TextServicem EmailService) now implement IAlert and we circulate through a list of alert types and send the message.
+
+We can now call the StockRoom App and add or remove messaging types without having to make changes and recompile the main stock room class.
+
+    public class Program
+    {
+        var stockRoom = new StockRoom();
+        stockRoom.AddMessagePortal(new WhatsAppService());
+        stockRoom.AddMessagePortal(new EmailService());
+        stockRoom.CheckStock();
+    }
 
