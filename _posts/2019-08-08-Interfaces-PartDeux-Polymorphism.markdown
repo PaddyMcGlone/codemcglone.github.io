@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Interfaces [Part Two] - Adding Polymorphism"
+title:  "Interfaces [Part Deux] - Adding Polymorphism"
 date:   2019-08-8 18:00:00 +0000
 ---
 ### Hang on a minute, what’s this polymorphism about?
