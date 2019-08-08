@@ -37,9 +37,9 @@ Let’s try and understand this concept via a simple code example:
         }
     }
 
-In the code above we have a method which simply wants to print all of the shapes which are currently in the list.But what if we add a new shape type to this list? 
+In the code above we have a method which simply wants to print all of the shapes which are currently in the list shapes. But what if someone decides to make a change to the original requirements (i know like that will ever happen) and adds a new shape...
 
-This code is not <em>extensible</em> and the addition of this new shape type will force a code change in our switch statement to handle to new printing method needed.
+This code is not <em>extensible</em> and the addition of this new shape will force a code change in our switch statement to handle the new type and printing method needed.
 
 This class is also breaking the <em>information expert principal</em> that we discussed in a previous entry. 
 
