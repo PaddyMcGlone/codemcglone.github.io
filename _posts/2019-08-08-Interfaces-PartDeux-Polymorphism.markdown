@@ -72,7 +72,7 @@ Let’s start by adding a Draw method to our base class of Shape, which is being
         }
     }
 
-Note we have added the <em>virtual</em> keyword above, the reason for adding this keyword is so this method if necessary can be overwritten within inherited classes. 
+Note we have added the <em>virtual</em> keyword above, the reason for adding this keyword is so this method if necessary can be overwritten within inherited classes to draw specific shapes.
 
 So now we have a base class created, let’s invoke the information expert principal and move the draw logic for drawing each specific shape from the DrawShapes method into the specific classes:
 
@@ -92,21 +92,21 @@ So now we have a base class created, let’s invoke the information expert princ
 		}	
     }
 
-This code is polymorphism in action, we are inheriting the virtual shape draw method within each class and then overriding the base method with a draw method for our specific class. 
+This code is polymorphism in action, we are inheriting the virtual shape draw method within each child shape class and then overriding the base draw method with a specialised method for our specific class. 
 We then call this for each specific shape or use the default method if suitable.
 
 ### Outcome
 By introducing Polymorphism into our application we are improving encapsulation and also preventing the creation of fat methods and helper classes within our application. 
 This convention also improves code readability and testability.
 
-### Interfaces and Polymorphism 
+### Using Polymorphism with interfaces
 In the last entry, we resolved a problem with the customer wanting to change their messaging platform but this change was going to have an impact on the existing Stockroom class and force a code change. 
 
 This is why we introduced interfaces into our application to implement the <em>'Open/Closed'</em> principal, to make our app more extensible and reactive to change.
 
 >A modern software application is one where we can change the behaviour of a class without having to change the code. This is achieved through extensibility, rather than changing existing application code we alternatively add new classes to our application
 
-However, in the last module if the customer wanted to add a new communication method. Our solution meant they had to remove the old class and add a new class which implements the messaging contract (interface).
+However, in the last module if the customer wanted to add a new communication method. Our solution meant they had to remove a class and add a new class which implements the messaging contract (interface).
 
     Public class WhatsAppMessenger : IAlert
     {
@@ -115,6 +115,8 @@ However, in the last module if the customer wanted to add a new communication me
             Console.WriteLine($”WhatsApp notification: {message}”);
         }
 	}
+
+### Using multiple notification alerts
 
 What if the customer wanted to keep the email service and add a WhatsApp notification on top of their current notification stack?
 
