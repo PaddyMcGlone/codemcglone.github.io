@@ -153,7 +153,7 @@ Now using our newly founded Polymorphism knowledge, we can implement this into o
         }
     }
 
-We have introduced polymorphism into our StockRoom application via interfaces. All of the messaging types (WhatsApp, TextServicem EmailService) now implement IAlert and we circulate through a list of alert types and send the message.
+In the code above, we have introduced polymorphism into our app via the use of interfaces. All of the alert types (WhatsApp, TextService EmailService) now implement IAlert and we have introduced a list of alert type instances which our app now circulates through and sends the message.
 
 We can now call the StockRoom App and add or remove messaging types without having to make changes and recompile the main stock room class.
 
@@ -164,4 +164,17 @@ We can now call the StockRoom App and add or remove messaging types without havi
         stockRoom.AddMessagePortal(new EmailService());
         stockRoom.CheckStock();
     }
+
+### Conclusion
+
+So we know have an appreciation for polymorphism and how we can integrate it within our application to further improve the open/closed principal of <em>'classes should be open for extension, but closed for modification'</em>.
+
+After reading this article, you may be thinking this is alot of work up front to add to your application, on the off change your code *might* change in the future. Of course, it would be easier to add the code as simple method calls and then move on.
+
+However, as your application grows it will become more difficult to handle changes such as the one we have coded for above. As classes will become tightly coupled and a change in one area will have a knock on effect on other areas of your application.
+
+
+Software engineering and clean architecture is all about the ability to react to change and not developing code which is 'tightly coupled' or reliant on third parties (such as whatsapp or email services).
+
+Thanks for reading
 
