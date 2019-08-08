@@ -69,7 +69,8 @@ Let’s start by adding a Draw method to our base class of Shape, which is being
         }
     }
 
-Note we have added the virtual keyword above, the reason for adding this keyword is so this method if necessary can be overwritten within inherited classes. 
+Note we have added the <em>virtual</em> keyword above, the reason for adding this keyword is so this method if necessary can be overwritten within inherited classes. 
+
 So now we have a base class created, let’s invoke the information expert principal and move the draw logic for drawing each specific shape from the DrawShapes method into the specific classes:
 
     Public class Square : Shape
@@ -77,7 +78,7 @@ So now we have a base class created, let’s invoke the information expert princ
         Public override void Draw()
         {
 	        Console.Writeline(“Square class: Drawing a square shape”);
-		}	
+		}
     }
 
     Public class Circle : Shape
