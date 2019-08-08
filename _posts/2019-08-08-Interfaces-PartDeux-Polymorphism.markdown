@@ -51,7 +51,7 @@ Ideally we want our DrawShapes method to simply iterate through the list of shap
 
 This method doesn’t need to know how each shape does it, its role is to simply pass through the list and request it’s drawn on screen.
 
-    // This is Polymorphism, Draw() knows how to handle each
+    // This is Polymorphism, Draw() knows how to handle each shape
     Public void DrawShapes(List<Shape> shapes)
     {
 	    Foreach(var shape in shapes)
