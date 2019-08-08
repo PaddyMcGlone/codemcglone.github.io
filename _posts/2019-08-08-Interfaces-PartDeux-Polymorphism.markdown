@@ -174,7 +174,7 @@ After reading this article, you may be thinking this is alot of work up front to
 However, as your application grows it will become more difficult to handle changes such as the one we have coded for above. As classes will become tightly coupled and a change in one area will have a knock on effect on other areas of your application.
 
 
-Software engineering and clean architecture is all about the ability to react to change and not developing code which is 'tightly coupled' or reliant on third parties (such as whatsapp or email services).
+Software engineering and clean architecture is all about the ability to react to change and not developing code which is *tightly coupled* or reliant on third parties (such as whatsapp or email services).
 
 Thanks for reading
 
