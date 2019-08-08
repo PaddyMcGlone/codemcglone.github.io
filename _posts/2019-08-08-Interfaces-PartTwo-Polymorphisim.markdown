@@ -5,7 +5,8 @@ date:   2019-08-8 18:00:00 +0000
 ---
 ### Hang on a minute, what’s this polymorphism about?
 
-Firstly what is this term Polymorphism and what does it mean
+Firstly what is this term Polymorphism and what does it mean?
+
 When you <em>'Google'</em> the term Polymorphisim OOP we receive a barrage of answers, some of which state
 
 >the ability of an object to take on many forms
