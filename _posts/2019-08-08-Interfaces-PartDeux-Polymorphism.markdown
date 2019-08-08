@@ -13,7 +13,7 @@ When you <em>'Google'</em> the term Polymorphisim OOP we receive a barrage of an
 
 >It is the ability to process objects differently based upon their type / class.
 
-### Code example – DrawShapes()
+### Enough talk - show me code
 
 It really quite a simple and yet powerful object orientated programming concept. 
 Let’s try and understand this concept via a simple code example:
