@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Interfaces [Part One] - Open/Closed Principal"
+title:  "Interfaces [Part One] - Open/Closed Principle"
 date:   2019-08-01 18:00:00 +0000
 ---
 ## Interfaces – Whats going on?
