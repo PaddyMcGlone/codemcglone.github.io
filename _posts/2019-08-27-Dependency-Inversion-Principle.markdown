@@ -81,7 +81,7 @@ The beauty of this abstraction is we can now swap out Entity Framework for anoth
 
 This abstraction also has other benifits, we can now also introduce unit testing within our application as we can now 'mock' our data retrieval dependencies.
 
-### Part two
+## Part two
 
 > Abstractions should not depend on details, details should depend upon abstractions
 
