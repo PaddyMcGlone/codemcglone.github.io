@@ -11,7 +11,7 @@ The Dependency Inversion Principle is the 'D' of the 'Uncle Bob's' [SOLID princi
 
 This principle although it sounds scary, can be better explained by breaking it down into two parts following a simple code example.
 
-### The code issue we will improve
+## The code issue we will improve
 
 We have been approached by Volkswagen to create a web application for white water kayakers whom love their vans (sounds like a great so far).
 The first requirement from the customer is to create a list of all the current vans in stock on the home page, so our developer creates a very simple app and delivers it to the customer:
@@ -39,7 +39,7 @@ For a really simple web application, this design approach is totally acceptable.
 
 Lets use the dependency principle to improve our web application, as mentioned earlier we can split this prinicple into two sections:
 
-### Part One - Adding abstractions.
+## Part One - Adding abstractions.
 
 > A high level module should not depend on a low level module, they should both rely upon abstractions.
 
@@ -48,9 +48,9 @@ Lets use the dependency principle to improve our web application, as mentioned e
 
 In our van application, the VanController is known as a *High-level* module and the Unit of work is known as the *Low-level* module. The van controller is directly responsible for creating an instance of the UnitOfWork and uses this instance to retrieve data from the database. You could describe this relationship between both modules as being *tightly-coupled*. 
 
-Tightly coupled means the two items are highly dependent on one another, in this example our controller is highly dependent on entity framework in order to retrieve the list of vans.  This means we change in one module will result in code change in the other highly dependant module.
+Tightly-coupled means the two items are highly dependent on one another, in this example our controller is highly dependent on entity framework to retrieve the data. This means a code change in one module will almost certainly result in code change in the other highly dependant module.
 
-Software enginering is about minimizing the impact change can have on your application.
+Software engineering is about minimizing the impact change can have on your application.
 
 The solution
 
