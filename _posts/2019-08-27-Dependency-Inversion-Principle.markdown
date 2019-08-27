@@ -118,7 +118,7 @@ As you can see from the snippet above, our unit of work interface is know comple
 <em>Before:</em>
 
     public controller VansController : Controller
-    {
+    {   
         private readonly UnitOfWork _unitofWork;
 
         public VansController()
