@@ -4,11 +4,14 @@ title:  "Dependency Inversion Principle [DIP]"
 date:   2019-08-27 18:00:00 +0000
 ---
 
+> A high level module should not depend on a low level module, they should both rely upon abstractions.
+> Abstractions should not depend on details, details should depend upon abstractions
+
 Ok another principle, this time the Dependency Inversion Prinicple - what is it, why is it important, what does it look like in code. Lets get stuck in !
 
 ### Part One
 
-The dependency inversion principle definition can be split into two parts, lets starts start with part one:
+This principle can be easily split into two parts, lets make a start on the first part:
 
 > A high level module should not depend on a low level module, they should both rely upon abstractions.
 
