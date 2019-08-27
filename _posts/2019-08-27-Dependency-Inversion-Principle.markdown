@@ -13,7 +13,7 @@ This principle although it sounds scary, can be better explained by breaking it 
 
 ## The code issue we will improve
 
-We have been approached by Volkswagen to create a web application for white water kayakers whom love their vans (sounds like a great so far).
+We have been approached by Volkswagen to create a web application for white water kayakers whom love their vans (sounds great so far).
 The first requirement from the customer is to create a list of all the current vans in stock on the home page, so our developer creates a very simple app and delivers it to the customer:
 
     public controller VansController : Controller
