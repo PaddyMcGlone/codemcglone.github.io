@@ -155,15 +155,15 @@ As you can see from the snippet above, our unit of work interface is know comple
         }
     }
 
-    So what have we improved in our web application by introducing these changes:
-    - Loose coupling: Our modules are no longer strongly reliant upon each other
-    - Ability to unit test: The introduce of loose coupling as allowed for the ability to add unit tests
-    - Improved robustness & maintianability: Our web applicaiton is now in a better place to respond to change. A change which will not result in large knock on effect within the application.
+So what have we improved in our web application by introducing these changes:
+- Loose coupling: Our modules are no longer strongly reliant upon each other
+- Ability to unit test: The introduce of loose coupling as allowed for the ability to add unit tests
+- Improved robustness & maintianability: Our web applicaiton is now in a better place to respond to change. A change which will not result in large knock on effect within the application.
 
-    I like to think of a good software application as a modular device. You should be able to lift areas of application and re-use it within another similar applications. Much like a van manufacturer would implement a new efficent engine component and re-use it accross all the engines in their vehicle range.
+I like to think of a good software application as a modular device. You should be able to lift areas of application and re-use it within another similar applications. Much like a van manufacturer would implement a new efficent engine component and re-use it accross all the engines in their vehicle range.
 
-    A poor software application is one which doesnt have the ability to share its functionality or recieve updates from other apps. 
+A poor software application is one which doesnt have the ability to share its functionality or recieve updates from other apps. 
 
-    By implementing the Dependency Inversion Principle, I feel you are ensuring your application has the ability to gracefully react to change and recieve or share components.
+By implementing the Dependency Inversion Principle, I feel you are ensuring your application has the ability to gracefully react to change and recieve or share components.
 
-    Thanks for reading
+Thanks for reading
