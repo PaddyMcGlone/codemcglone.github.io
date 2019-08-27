@@ -90,7 +90,7 @@ The second part to this principal sounds complicated, but when explained with a 
 What we are stating here is when we create an abstraction such as our interface earlier, this interface should not be reliant upon details, such as the persistance method (Entity Framework).
 
 When we created our interface earlier we added the standard save changes method and also the VanRepository so we could access the van data we require. 
-The problem with this is the VanRepository is still reliant on Entity Framework, which means our abstraction is reliant upon Entity Framework. Therefore, our interface is depending upon Entity Framework (details).
+The problem with this is the VanRepository is still reliant on Entity Framework, which means our abstraction is reliant upon Entity Framework. Therefore, our abstraction is dependant upon details.
 
     public interface IUnitOfWork
     {
