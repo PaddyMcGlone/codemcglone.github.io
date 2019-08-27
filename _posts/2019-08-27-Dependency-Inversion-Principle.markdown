@@ -1,117 +1,84 @@
 ---
 layout: post
-title:  "Interfaces [Part One] - Open/Closed Principle"
-date:   2019-08-01 18:00:00 +0000
+title:  "Dependency Inversion Principle [DIP]"
+date:   2019-08-27 18:00:00 +0000
 ---
-## Interfaces – Whats going on?
+## Dependency Inversion Principle - The theory
 
-When I was a junior software engineer working with Borland Delphi 7 I couldn’t wrap my head around interfaces.
+Ok the Dependency Inversion Prinicple - what is it, why is it important, what does it look like in code. Lets get stuck in !
 
->'Why use an interface, surely its easier to just simply call the method.'
+### Part One
 
->'What is it even used for, is it the same as inheritance.'
+The dependency inversion principle definition can be split into two parts, lets starts start with part one:
 
- These were questions I often asked myself during this time and it wasnt until I made the move to developing web apps that their purpose started to make sense within an application.
+> A high level module should not depend on a low level module, they should both rely upon abstractions.
 
-## What is an interface?
+In a basic ASP.Net web application, when you create a standard CRUD controller, it will more than likely have a dependency on a persistence layer (unit of work) for retrieving and saving data. In the example below we have a very simply controller which is used for displaying a list of all vans on a web page.
 
-I like to think of an interface as an abstraction between the caller and provider, a way of adding a buffer or <em>‘separation of concerns'</em>. Think of interfaces as a way of making your class less dependent on another specific class which is providing the functionality. What do I mean by that? Let's jump straight into code. 
+    public controller VansController : Controller
+    {
+        private readonly DbContext _context;
 
-    Public class StockRoom 
-    { 
+        public VansController()
+        {
+            _context = new DbContext;
+        }
 
-        Private readonly EmailService _service; 
+        public actionresult Index()
+        {
+            var vans = _context.Vans.GetAll();
 
-        Public StockRoom() 
-        { 
-            _service = new EmailService(); 
-        }  
+            Return View("Index", vans);
+        }
+    }
 
-        Public void CheckStock() 
-        { 
-            // Do some stock level calculations.. 
-            
-            If(stockLevel <= AcceptableLevel) 
-                SendMessage(“Christina - Order more books pronto!”); 
-        } 
+In the code example shown above, the VanController is known as a 'High-level' module and the DbContext is known as the 'Low-level' module. The problem with the code example is, we have introduced a 'tightly-coupled' relationship between our van controller and entity framework. 
 
-        Public void SendMessage(string message) 
-        { 
-              _service.Send(message); 
-        } 
-    } 
+Tightly coupled means the two items are highly dependent on one another, in this example our controller is highly dependent on entity framework in order to retrieve the list of vans.  This means we change in one module will result in code change in the other highly dependant module.
 
-If we look at the code above, we can see that the developer has defined a <em>'tightly coupled'</em> class, meaning our class is highly dependent on the class email service. If we were working on a really simple web application and we were not concerned about unit testing or the open closed principal (Software should be open for extension but closed for modification) this code would be fine. 
+Software enginering is about minimizing the impact change can have on your application.
 
-However, what happens if one day the customer rings the developer and asks:
->‘Hey developer, email alerts is so old fashioned, can I please swap it out for WhatsApp notifications?’.  
+The solution
 
-Straight away the developer is thinking:
->‘Oh no, I have to change and redeploy my stockroom class and I also have to create a new service and add it’.
+As noted earlier, the solution to this issue is to introduce an abstraction into the relationship between the two modules. As you can see in the code example below this abstraction takes the form of an interface known as IUnitOfWork and both the controller and unit of work and therefore reliant upon this abstraction rather than each other. 
 
-This is where interfaces can come to the rescue and save the developer from all these headaches. 
+    public controller VansController : Controller
+    {
+        private readonly IUnitOfWork _unitOfWork;
 
-Let’s create an interface for adding alerts, as you can see from the class below, we define an interface or <em>‘a contract’</em> which states, when you implement this interface – you must define these methods: 
+        public VansController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
-    Public interface Alert 
-    { 
-        void Send(string message); 
-    } 
+        public actionresult Index()
+        {
+            var vans = _unitOfWork.Vans.GetAll();
 
-Now that we have defined our interface / contract, we can then define a class to implement this contract:
+            Return View("Index", vans);
+        }
+    }
 
-    Public class WhatsAppAlerts : Alert 
-    { 
-        public void Send(string message) 
-        { 
-            Console.WriteLine($"WhatsApp notification: { message }") 
-        } 
-    } 
+The beauty of this abstraction is we can now swap out Entity Framework for another presistance method and it will have no affect on our controllers. 
 
-What we have done in the code above is define a contract that states, when implemented a class must implement a send method which receives a message as a param. In our example above, the Send message is implemented by the WhatsAppAlerts class.
+This abstraction also means we can introduce unit testing within our application as we can now 'mock' our dependencies.
 
-Now that we have a contract and a class implementing that contract, we can update our formerly tightly coupled class, to something a little less dependant: 
+### Part two
 
-    Public class StockRoom 
-    { 
-        Private readonly IAlert _alter; 
+> Abstractions should not depend on details, details should depend upon abstractions
 
-        // alert object managed via Dependancy Injection
-        Public StockRoom(IAlert alert) 
-        { 
-            _alert = alert;               
-        }  
+The second part to this principal sounds complicated, but it is fairly straight forward. What we are stating here is when we create an abstraction such as our interface earlier. This interface should not be reliant upon a module, such as Entity Framework.
 
-        Public void CheckStock() 
-        { 
-            // Do some stock checking calculations.. 
+    public interface IUnitOfWork
+    {
+        void SaveChange();
+        Vans: VanRepository;
+    }
 
-            If(stockLevel <= AcceptableLevel) 
-                SendMessage(“Christina - Order more books pronto!”); 
-        } 
+In our interface above, the van repository is still dependent upon entity framework. To resolve this issue we can introduce another abstraction which knows nothing about Entity Framework.
 
-        Public void SendMessage(string message) 
-        { 
-            _alert.Send(message); 
-        } 
-    } 
-
-## Outcome of adding an interface
-
-As you can see in the class above, the StockRoom class no longer cares who is in charge of sending the message, it calls alert and sends a message, this class is no longer concerned with the medium used to transport this message.
-
-> Please note the use of dependancy injection above for the creation of the alert logic. If you are unfamilar with this concept I will create another blog article covering this concept. For now, simply think of this as a method of improving the dependancy inversion and another entity is now incharge of creating this object.
-
-### Loose Coupling
-
-What we have achieved in the code above is add loose coupling to our stockroom class. We have moved from the class being responsible for sending the message to calling an abstract which handles the send for us. This means in the future if the customer decides to switch back to emails or an alternative messaging approach. The developer simply has to implement a new class for sending the message and inherit from Alerts – the StockRoom will remain unchanged. 
-
-### The open / closed principal
-
-In object orientated programming terms, this is what is known as the open-closed principal, as objects should be open for extension but closed for modification. This was implemented in our example by the SendMessage changing from Email to WhatsApp (and in the future an alternative method) without having to modify our StockRoom class.
-
-### Conclusion
-
-I hope this short article has helped to slightly improve your understanding on interfaces, in part two I will explain the role interfaces plays in Polymorphisim and also allowing for unit testing to be incorporated within your application.
-
-Thanks for reading
+    public interface IUnitOfWork
+    {
+        void SaveChanges();
+        Van: IVanRepository;   
+    }
