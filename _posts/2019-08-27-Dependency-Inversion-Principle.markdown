@@ -7,7 +7,7 @@ date:   2019-08-27 18:00:00 +0000
 > A high level module should not depend on a low level module, they should both rely upon abstractions.
 > Abstractions should not depend on details, details should depend upon abstractions
 
-The Dependency Inversion Principle is the 'D' of the 'Uncle Bob' [SOLID principles](http://blog.cleancoder.com/) which are implemented to to improve the robustness and maintainability of your software application.
+The Dependency Inversion Principle is the 'D' of the 'Uncle Bob's' [SOLID principles](http://blog.cleancoder.com/) which are implemented to to improve the robustness and maintainability of your software application.
 
 This principle can be better explained by breaking the design fundamental down into two parts with a simple code example.
 
