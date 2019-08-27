@@ -7,11 +7,39 @@ date:   2019-08-27 18:00:00 +0000
 > A high level module should not depend on a low level module, they should both rely upon abstractions.
 > Abstractions should not depend on details, details should depend upon abstractions
 
-The Dependency Inversion Principle is the 'D' of the 'Uncle Bob's' [SOLID principles](http://blog.cleancoder.com/) which are implemented to to improve the robustness and maintainability of your software application.
+The Dependency Inversion Principle is the 'D' of the 'Uncle Bob's' [SOLID principles](http://blog.cleancoder.com/) which are implemented to improve the robustness and maintainability of your software application.
 
-This principle can be better explained by breaking the design fundamental down into two parts with a simple code example.
+This principle although it sounds scary, can be better explained by breaking it down into two parts following a simple code example.
 
-### Part One
+### The example code
+
+We have been approached by Volkswagen to create a web application for white water kayakers whom love their vans (sounds like a great so far).
+The first requirement from the customer is to create a list of all the current vans in stock on the home page, so our developer creates a very simple app and delivers it to the customer:
+
+    public controller VansController : Controller
+    {
+        private readonly UnitOfWork _unitofWork;
+
+        public VansController()
+        {
+            _unitOfWork = new UnitOfWork;
+        }
+
+        public actionresult Index()
+        {
+            var vans = _UnitOfWork.VanRepository.GetAll();
+
+            Return View("Index", vans);
+        }
+    }
+
+As you can see from the code above, this is a really simple web application. We are mannually creating an instance of the unit of work and using it to retrieve the data we need for our view and passing it to the index page. 
+
+For a really simple web application, this design approach is totally acceptable. However, when our application grows in size managing the risk involved in implementing these changes is going to be a difficult task.
+
+Lets use the dependency principle to improve our web application, as mentioned earlier we can split this prinicple into two sections:
+
+### Part One - Adding abstractions.
 
 > A high level module should not depend on a low level module, they should both rely upon abstractions.
 
