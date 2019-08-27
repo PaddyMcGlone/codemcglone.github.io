@@ -116,6 +116,7 @@ As you can see from the snippet above, our unit of work interface is know comple
 ## Conclusion
 
 <em>Before:</em>
+
     public controller VansController : Controller
     {
         private readonly UnitOfWork _unitofWork;
@@ -134,6 +135,7 @@ As you can see from the snippet above, our unit of work interface is know comple
     }
 
 <em>After:</em>
+
     public controller VansController : Controller
     {
         // Note: We are now using the unit of work interface.
