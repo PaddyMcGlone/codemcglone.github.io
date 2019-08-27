@@ -54,7 +54,7 @@ Software engineering is about minimizing the impact change can have on your appl
 
 ### The solution
 
-As hinted in the title earlier, the solution is to introduce an abstraction between both modules. The purpose of adding an abstraction is to allow the module to become dependant upon *go-between* instead of each other. So lets introduce an abstraction between our high level and low level modules in the van application:
+As hinted in the title earlier, the solution is to introduce an abstraction between both modules. The purpose of adding an abstraction is to allow the module to become dependant upon a *go-between* instead of each other. So lets introduce an abstraction between our high level and low level modules in the van application:
 
     public controller VansController : Controller
     {
@@ -75,7 +75,9 @@ As hinted in the title earlier, the solution is to introduce an abstraction betw
         }
     }
 
-As you can see in the code example above this abstraction takes the form of an interface known as IUnitOfWork and both the controller and unit of work and therefore reliant upon this abstraction rather than each other. The beauty of this abstraction is we can now swap out Entity Framework for another presistance method and it will have no affect on our controllers. The controller no longer has any knowledge of how the data is retrieved, it simply tells a black box - *go get me some data..now*.
+As you can see in the code example above this abstraction takes the form of an interface known as IUnitOfWork and both the controller and unit of work and therefore reliant upon this abstraction rather than each other. 
+
+The beauty of this abstraction is we can now swap out Entity Framework for another presistance method and it will have no affect on our controllers. The controller no longer has any knowledge of how the data is retrieved, it simply tells a black box - *go get me some data..now*.
 
 This abstraction also has other benifits, we can now also introduce unit testing within our application as we can now 'mock' our data retrieval dependencies.
 
