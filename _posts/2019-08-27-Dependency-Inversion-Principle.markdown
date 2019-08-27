@@ -3,9 +3,8 @@ layout: post
 title:  "Dependency Inversion Principle [DIP]"
 date:   2019-08-27 18:00:00 +0000
 ---
-## Dependency Inversion Principle - The theory
 
-Ok the Dependency Inversion Prinicple - what is it, why is it important, what does it look like in code. Lets get stuck in !
+Ok another principle, this time the Dependency Inversion Prinicple - what is it, why is it important, what does it look like in code. Lets get stuck in !
 
 ### Part One
 
