@@ -37,7 +37,7 @@ As you can see from the code above, this is a really simple web application. We 
 
 For a really simple web application, this design approach is totally acceptable. However, when our application grows in size managing the risk involved in implementing these changes is going to be a difficult task.
 
-Lets use the dependency principle to improve our web application, as mentioned earlier we can split this prinicple into two sections:
+Lets use the dependency principle to improve our web application, as mentioned earlier we can split this principle into two sections:
 
 ## Part One - Adding abstractions.
 
