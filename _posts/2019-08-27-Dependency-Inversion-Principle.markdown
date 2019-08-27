@@ -11,7 +11,7 @@ The Dependency Inversion Principle is the 'D' of the 'Uncle Bob's' [SOLID princi
 
 This principle although it sounds scary, can be better explained by breaking it down into two parts following a simple code example.
 
-### The example code
+### The code issue we will improve
 
 We have been approached by Volkswagen to create a web application for white water kayakers whom love their vans (sounds like a great so far).
 The first requirement from the customer is to create a list of all the current vans in stock on the home page, so our developer creates a very simple app and delivers it to the customer:
@@ -43,28 +43,10 @@ Lets use the dependency principle to improve our web application, as mentioned e
 
 > A high level module should not depend on a low level module, they should both rely upon abstractions.
 
-In a nutshell, a high level module which provides complex rules / logic should be unaffected by changes within low level modules whom soley provide utility features.
+- High level module = area which provides complex rules / business logic i.e. a controller.
+- Low level module = area which provides utility functionality i.e. Entity Framework / unit of work.
 
-In a basic ASP.Net web application, when you create a standard CRUD controller, it will more than likely have a dependency on a persistence layer (unit of work) for retrieving and saving data. In the example below we have a very simply controller which is used for displaying a list of all vans on a web page.
-
-    public controller VansController : Controller
-    {
-        private readonly UnitOfWork _unitofWork;
-
-        public VansController()
-        {
-            _unitOfWork = new UnitOfWork;
-        }
-
-        public actionresult Index()
-        {
-            var vans = _UnitOfWork.VanRepository.GetAll();
-
-            Return View("Index", vans);
-        }
-    }
-
-In the code example shown above, the VanController is known as a 'High-level' module and the Unit of work is known as the 'Low-level' module. The problem with the code example is, we have introduced a 'tightly-coupled' relationship between our van controller and entity framework. 
+In our van application, the VanController is known as a *High-level* module and the Unit of work is known as the *Low-level* module. The van controller is directly responsible for creating an instance of the UnitOfWork and uses this instance to retrieve data from the database. You could describe this relationship between both modules as being *tightly-coupled*. 
 
 Tightly coupled means the two items are highly dependent on one another, in this example our controller is highly dependent on entity framework in order to retrieve the list of vans.  This means we change in one module will result in code change in the other highly dependant module.
 
