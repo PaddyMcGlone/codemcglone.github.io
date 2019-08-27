@@ -85,7 +85,12 @@ This abstraction also has other benifits, we can now also introduce unit testing
 
 > Abstractions should not depend on details, details should depend upon abstractions
 
-The second part to this principal sounds complicated, but it is fairly straight forward. What we are stating here is when we create an abstraction such as our interface earlier. This interface should not be reliant upon a module, such as Entity Framework.
+The second part to this principal sounds complicated, but when explained with a simple problem I feel its actually quite straight forward. 
+
+What we are stating here is when we create an abstraction such as our interface earlier, this interface should not be reliant upon details, such as the persistance method (Entity Framework).
+
+When we created our interface earlier we added the standard save changes method and also the VanRepository so we could access the van data we require. 
+The problem with this is the VanRepository is still reliant on Entity Framework, which means our abstraction is reliant upon Entity Framework. Therefore, our interface is depending upon Entity Framework (details).
 
     public interface IUnitOfWork
     {
@@ -93,10 +98,70 @@ The second part to this principal sounds complicated, but it is fairly straight 
         Vans: VanRepository;
     }
 
-In our interface above, the van repository is still dependent upon entity framework. To resolve this issue we can introduce another abstraction which knows nothing about Entity Framework.
+The solution is really simple, lets add another layer of abstraction between our interface and the data layer. Lets create an interface for our repository and then use this definition within our new unit of work interface
+
+    public interface IVanRepository
+    {
+        //.. Some repository data here
+    }
 
     public interface IUnitOfWork
     {
         void SaveChanges();
         Van: IVanRepository;   
     }
+
+As you can see from the snippet above, our unit of work interface is know completely independant from any low level module or details.
+
+##Conclusion
+
+<em>Before:</em>
+    public controller VansController : Controller
+    {
+        private readonly UnitOfWork _unitofWork;
+
+        public VansController()
+        {
+            _unitOfWork = new UnitOfWork;
+        }
+
+        public actionresult Index()
+        {
+            var vans = _UnitOfWork.VanRepository.GetAll();
+
+            Return View("Index", vans);
+        }
+    }
+
+<em>After:</em>
+    public controller VansController : Controller
+    {
+        // Note: We are now using the unit of work interface.
+        private readonly IUnitOfWork _unitOfWork;
+
+        public VansController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+        public actionresult Index()
+        {
+            // GetAll() method will be defined within the interface.
+            var vans = _unitOfWork.Vans.GetAll();
+
+            Return View("Index", vans);
+        }
+    }
+
+    So what have we improved in our web application by introducing these changes:
+    - Loose coupling: Our modules are no longer strongly reliant upon each other
+    - Ability to unit test: The introduce of loose coupling as allowed for the ability to add unit tests
+    - Improved robustness & maintianability: Our web applicaiton is now in a better place to respond to change. A change which will not result in large knock on effect within the application.
+
+    I like to think of a good software application as a modular device. You should be able to lift areas of application and re-use it within another similar applications. Much like a van manufacturer would implement a new efficent engine component and re-use it accross all the engines in their vehicle range.
+
+    A poor software application is one which doesnt have the ability to share its functionality or recieve updates from other apps. 
+
+    By implementing the Dependency Inversion Principle, I feel you are ensuring your application has the ability to gracefully react to change and recieve or share components.
+
+    Thanks for reading
