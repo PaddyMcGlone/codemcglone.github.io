@@ -52,12 +52,13 @@ Tightly-coupled means the two items are highly dependent on one another, in this
 
 Software engineering is about minimizing the impact change can have on your application.
 
-The solution
+### The solution
 
-As noted earlier, the solution to this issue is to introduce an abstraction into the relationship between the two modules. As you can see in the code example below this abstraction takes the form of an interface known as IUnitOfWork and both the controller and unit of work and therefore reliant upon this abstraction rather than each other. 
+As hinted in the title earlier, the solution is to introduce an abstraction between both modules. The purpose of adding an abstraction is to allow the module to become dependant upon *go-between* instead of each other. So lets introduce an abstraction between our high level and low level modules in the van application:
 
     public controller VansController : Controller
     {
+        // Note: We are now using the unit of work interface.
         private readonly IUnitOfWork _unitOfWork;
 
         public VansController(IUnitOfWork unitOfWork)
@@ -67,15 +68,16 @@ As noted earlier, the solution to this issue is to introduce an abstraction into
 
         public actionresult Index()
         {
+            // GetAll() method will be defined within the interface.
             var vans = _unitOfWork.Vans.GetAll();
 
             Return View("Index", vans);
         }
     }
 
-The beauty of this abstraction is we can now swap out Entity Framework for another presistance method and it will have no affect on our controllers. 
+As you can see in the code example above this abstraction takes the form of an interface known as IUnitOfWork and both the controller and unit of work and therefore reliant upon this abstraction rather than each other. The beauty of this abstraction is we can now swap out Entity Framework for another presistance method and it will have no affect on our controllers. The controller no longer has any knowledge of how the data is retrieved, it simply tells a black box - *go get me some data..now*.
 
-This abstraction also means we can introduce unit testing within our application as we can now 'mock' our dependencies.
+This abstraction also has other benifits, we can now also introduce unit testing within our application as we can now 'mock' our data retrieval dependencies.
 
 ### Part two
 
