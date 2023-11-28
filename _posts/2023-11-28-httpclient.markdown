@@ -25,7 +25,23 @@ According to Microsoft, the HttpClient is ‘a collection of settings which are 
 
 This HttpClient class implements the Idisposable interface, this disposable interface states how a class manages the release of unmanaged resources within a C# application. Its purpose is to prevent memory leaks within your .NET Core application. 
 
-As developers we are taught, when working with an idispoable instance to use a using statement to ensure the instance is correctly disposed after use. However, the HttpClient class is an exception to this rule, as when the client is disposed of by the garbage collector, the underlying HttpSocket is not immediately released and remains in temporary idle state.  
+As developers we are taught, when working with an idispoable instance to use a using statement to ensure the instance is correctly disposed after use. 
+
+#####An example of a typical using statement
+
+    using System;
+    using System.IO;
+
+    var line;
+
+    using (StreamReader reader = new StreamReader("file.txt"))
+    {
+        line = reader.ReadLine();
+    }
+
+    Console.WriteLine(line);
+
+However, the HttpClient class is an exception to this rule, as when the client is disposed of by the garbage collector, the underlying HttpSocket is not immediately released and remains in temporary idle state.
 
 This socket idling can then result in HttpSocket exhaustion problems which can destabilise your web application. Socket exhaustion is not the only issue which can arise from an incorrectly utilised HttpClient. DNS related issues can also be issues introduced within your application by a poorly configured HttpClient. 
 
