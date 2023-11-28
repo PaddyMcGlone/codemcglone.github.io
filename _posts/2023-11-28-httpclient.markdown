@@ -27,7 +27,7 @@ This HttpClient class implements the Idisposable interface, this disposable inte
 
 As developers we are taught, when working with an idispoable instance to use a using statement to ensure the instance is correctly disposed after use. 
 
-#####An example of a typical using statement
+##### An example of a typical using statement
 
     using System;
     using System.IO;
