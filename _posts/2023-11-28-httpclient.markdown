@@ -76,7 +76,7 @@ In the previous approach, we created a new instance of the httpclient within a u
 
 So rather than creating a new HttpClient for every request generated within our application, why not implement the singleton pattern and promote reuse within the application – this should resolve our issue? 
 
-![Alt text](/docs/assets/httpclient.png2.png)
+![Alt text](/docs/assets/httpclient2.png)
 
 In this approach we can create only a single HTTP client and one network connection which is then maintained for the lifespan of the application. 
 
