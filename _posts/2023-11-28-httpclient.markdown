@@ -32,7 +32,7 @@ This socket idling can then result in HttpSocket exhaustion problems which can d
 ## Replicating Http Socket Exhaustion
 In the following section I will demonstrate how the combination of HttpClient and using statements introduces socket exhaustion within our application. The following code is enough to demonstrate the underlying issue with the HttpClient class when incorrectly purposed. 
 
-![Alt text](images/httpclient.png)
+![Alt text](/docs/assets/httpclient.png)
 
 We start this code segment by defining our http client within a using clause. We wrap our httpClient in a using statement as stated earlier, this is a very common approach within .Net development. 
 
