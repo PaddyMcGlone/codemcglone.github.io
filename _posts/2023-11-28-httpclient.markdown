@@ -4,7 +4,7 @@ title:  "Sockets are exhausting"
 date:   2023-11-28 17:00:00 +0000
 ---
 
-##The problem 
+## The problem 
 A few years ago, I was a member of a software development team which was about to develop a software solution that would impact the lives of many people living within Northern Ireland. This software solution when released would allow people to gain access to bars and restaurants and board flights during a busy Christmas period after a period of lockdowns due to COVID-19. 
 
 Our development team were anticipating this web application to be handling large scale traffic loads and to be firmly in the public eye for several months.  
@@ -13,11 +13,11 @@ The high traffic loads on our prospective web application concerned me, as these
 
 It was during this investigation I stumbled upon something that really surprised me -> as a team we had been using the HttpClient class incorrectly for several years.
 
-##What is the HttpClient class 
+## What is the HttpClient class 
 
 When an application needs to communicate with a third-party service such as an API endpoint, it does so via a HTTP Request. 
 
-‘Http requests are a method of exchanging data on the internet between a client and a server’ 
+>HTTP requests are a method of exchanging data on the internet between a client and a server’ 
 
 The HttpClient class provides a method of sending HTTP requests and receiving HTTP responses from a resource defined within a URL property of the class (I.e. WeatherForecastAPI). This class tends to be the primary tool used by developers when working with Web Api's. 
 
@@ -29,7 +29,7 @@ As developers we are taught, when working with an idispoable instance to use a u
 
 This socket idling can then result in HttpSocket exhaustion problems which can destabilise your web application. Socket exhaustion is not the only issue which can arise from an incorrectly utilised HttpClient. DNS related issues can also be issues can also be introduced within your application by a poorly configured HttpClient. 
 
-##Replicating Http Socket Exhaustion
+## Replicating Http Socket Exhaustion
 In the following section I will demonstrate how the combination of HttpClient and using statements introduces socket exhaustion within our application. The following code is enough to demonstrate the underlying issue with the HttpClient class when incorrectly purposed. 
 
 ![Alt text](images/httpclient.png)
@@ -54,7 +54,7 @@ So the HttpClient class will not “lock the front door” until it is certain a
 
 After a period of time, these time wait connections will eventually close. However, as you can see from the screenshot above we only have a certain number of connection pools available. In a high traffic, our web application will continually raise http socket exhaustion exceptions as our application struggles to deal with the HTTP connection pool shortage. 
 
-##Singleton pattern 
+## Singleton pattern 
 
 In the previous approach, we created a new instance of the httpclient within a using clause. The takeaway from this investigation is this approach creates a new network connection with every new instance of the HttpClient created. 
 
@@ -66,7 +66,7 @@ In this approach we can create only a single HTTP client and one network connect
 
 This approach is perfectly valid until there is any changes regarding the DNS or networking of our API. If a change does occur, our web application will then require a scheduled restart of the web application in order to obtain the latest configuration. 
 
-##HTTP Client Factory 
+## HTTP Client Factory 
 
 We have identified the issues with incorrect use of the HTTP Client class and the problems with implementing the singleton pattern. In order to resolve these problems within our web application, we can use the IHttpClient factory, creating a new instance of the HttpClient class from within this factory. 
 
