@@ -44,7 +44,7 @@ On the Windows platform, Netstat is a popular tool for studying network statisti
 
 As shown below, if when we execute the Netstat tool for our target API address we can view all of the network connections for this address. 
 
-![Alt text](images/httpclient1.png)
+![Alt text](/docs/assets/httpclient1.png)
 
 As you can see in the diagram above, when we send a http request, our application creates a new network connection. Regardless of our ‘clean coding’ by wrapping the HttpClient within a using clause, a network connection idlily persists in a “time-wait” state, with holding a network socket. 
 
@@ -60,7 +60,7 @@ In the previous approach, we created a new instance of the httpclient within a u
 
 So rather than creating a new HttpClient for every request generated within our application, why not implement the singleton pattern and promote reuse within the application – this should resolve our issue? 
 
-![Alt text](images/httpclient.png2.png)
+![Alt text](/docs/assets/httpclient.png2.png)
 
 In this approach we can create only a single HTTP client and one network connection which is then maintained for the lifespan of the application. 
 
@@ -70,7 +70,7 @@ This approach is perfectly valid until there is any changes regarding the DNS or
 
 We have identified the issues with incorrect use of the HTTP Client class and the problems with implementing the singleton pattern. In order to resolve these problems within our web application, we can use the IHttpClient factory, creating a new instance of the HttpClient class from within this factory. 
 
-![Alt text](images/httpclient3.png)
+![Alt text](/docs/assets/httpclient3.png)
 
 In the code example above, we have dependancy injected the IHttpClientFactory within the constructor for our class. In order to enable this dependancy injection, we have to add the following code within startup.cs class 
 
