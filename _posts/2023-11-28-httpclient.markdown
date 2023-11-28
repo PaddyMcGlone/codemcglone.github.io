@@ -9,7 +9,7 @@ A few years ago, I was a member of a software development team which was about t
 
 Our development team were anticipating this web application to be handling large scale traffic loads and to be firmly in the public eye for several months.  
 
-The high traffic loads on our prospective web application concerned me, as these were demands we as a software development team didn’t have to consider when architecting our solutions. To ease my concerns, I started investigating our proposed solution for possible unforeseen issues, focusing upon issues that could arise due to high traffic.  
+The high traffic loads on our prospective web application concerned me, as these were demands we as a software development team didn’t previously have to consider when architecting our solutions. To ease my concerns, I started investigating our proposed solution for possible unforeseen issues, focusing upon issues that could arise due to high traffic.  
 
 It was during this investigation I stumbled upon something that really surprised me -> as a team we had been using the HttpClient class incorrectly for several years.
 
@@ -25,9 +25,9 @@ According to Microsoft, the HttpClient is ‘a collection of settings which are 
 
 This HttpClient class implements the Idisposable interface, this disposable interface states how a class manages the release of unmanaged resources within a C# application. Its purpose is to prevent memory leaks within your .NET Core application. 
 
-As developers we are taught, when working with an idispoable instance to use a using statement to ensure the instance is correctly disposed after use. However, the HttpClient class is an exception to this rule, as when the client is disposed of by the garbage collector, the underlying HttpSocket is not immediately released and remain in temporary idle state.  
+As developers we are taught, when working with an idispoable instance to use a using statement to ensure the instance is correctly disposed after use. However, the HttpClient class is an exception to this rule, as when the client is disposed of by the garbage collector, the underlying HttpSocket is not immediately released and remains in temporary idle state.  
 
-This socket idling can then result in HttpSocket exhaustion problems which can destabilise your web application. Socket exhaustion is not the only issue which can arise from an incorrectly utilised HttpClient. DNS related issues can also be issues can also be introduced within your application by a poorly configured HttpClient. 
+This socket idling can then result in HttpSocket exhaustion problems which can destabilise your web application. Socket exhaustion is not the only issue which can arise from an incorrectly utilised HttpClient. DNS related issues can also be issues introduced within your application by a poorly configured HttpClient. 
 
 ## Replicating Http Socket Exhaustion
 In the following section I will demonstrate how the combination of HttpClient and using statements introduces socket exhaustion within our application. The following code is enough to demonstrate the underlying issue with the HttpClient class when incorrectly purposed. 
