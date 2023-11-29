@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Virtual networks, subnets, private endpoints & links"
+title:  "Virtual networks, subnets, private endpoints and links"
 date:   2023-11-29 17:00:00 +0000
 ---
 
