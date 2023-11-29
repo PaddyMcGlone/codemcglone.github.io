@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Virtual networks, subnets, private endpoints and links"
-date:   2023-11-29 17:00:00 +0000
+date:   2023-11-29 08:00:00 +0000
 ---
 
 ## Virtual network (VNet)
